@@ -3,17 +3,31 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class WifiParamsType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-            ->add('field_name')
-        ;
-    }
+  public function buildForm(FormBuilderInterface $builder, array $options): void
+  {
+    $builder
+      ->add('networkName', TextType::class)
+      ->add('encryption', ChoiceType::class, [
+        'choices' => [
+            'WPA2' => 'WPA2',
+            'WPA' => 'WPA',
+            'WEP' => 'WEP',
+        ],
+        'help' => 'The type of security protocol on your network.'
+      ])
+        ->add('password', TextType::class)
+        ->add('isHidden', CheckboxType::class, [
+          'label' => 'Hidden Wifi Network',
+          'required' => false
+        ])
+    ;
+  }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
