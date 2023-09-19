@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Formulaire ici!</h1>
+    <h1>Wifi QR code Generator</h1>
 
-    {{forms_start(form)}}
-    {{forms_start(form)}}
-    {{forms_end(form)}}
+    {{form_start(form)}}
+        {{form_start(form)}}
+        <button type="submit">Generate QR code</button>
+    {{form_end(form)}}
 {% endblock %}
